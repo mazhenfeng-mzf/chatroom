@@ -8,7 +8,7 @@
 
 -------------------
 
-[TOC]
+
 
 # 使用说明
 一个服务器, 多客户端模式
@@ -18,6 +18,7 @@
 ### 准备一个 mysql 数据库 
 需要手动创建一个数据库
 比如
+
 ![image](https://user-images.githubusercontent.com/63535556/136687762-530a4a0d-3f12-4dd9-a3e5-9bf2bdf77a21.png)
 
 ### 修改配置文件 chatroomServer.conf
@@ -104,5 +105,6 @@ $ go build -ldflags="-H windowsgui" -o client.exe clientMain.go
 MZF@DESKTOP-HDOQO35 MINGW64 ~/go/src/chatroom/main (master)
 $ ./client.exe
 ```
-![Alt text](./1633853083422.png)
+
+
 ![image](https://user-images.githubusercontent.com/63535556/136687778-38327907-eba2-4aba-96b5-6878103b6936.png)
