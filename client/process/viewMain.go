@@ -40,6 +40,7 @@ type View struct {
 	mw_FriendsPage       MainWindow
 	mwAssign_FriendsPage *walk.MainWindow
 	FriendsViewList      map[string]*FriendView //string is Client Id
+	OpenFriendViewFlag   bool                   //FriendsPage() 运行 true, 运行结束 false
 
 	LoginCount *walk.LineEdit
 	LoginPwd   *walk.LineEdit
@@ -194,6 +195,8 @@ func (this *View) DisplayPcClients() (err error) {
 		all_string += one_string
 	}
 	MyLOG.Log("聊天室在线用户: %s", all_string)
+	//MyLOG.Log("this.PcCR.PcOnlineClient: %#v", this.PcCR.PcOnlineClient)
+
 	this.PcCR.PcOnlineClient.SetText(all_string)
 	return
 }

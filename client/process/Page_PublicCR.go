@@ -54,6 +54,7 @@ func (this *View) publicCRPage() {
 	this.PcCR.mw.AssignTo = &this.PcCR.mwAssign
 
 	MyLOG.Log("主程序已进入公共聊天室, 让子程序完成填充内容")
+	//MyLOG.Log("this.PcCR.PcOnlineClient: %#v", this.PcCR.PcOnlineClient)
 	this.PcCR.mw.Run()
 
 	MyLOG.Log("退出公共聊天室")

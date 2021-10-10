@@ -17,7 +17,7 @@ func main() {
 	//Read Config
 	err := ReadConfig(filepath)
 	if err != nil {
-		fmt.Println("ReadConfig \"%s\" err=", filepath, err)
+		fmt.Println("读取配置文件 \"%s\" 失败, err=", filepath, err)
 		return
 	}
 	tools.MyLOG.Log("读取配置文件 %s 成功: %#v", filepath, MyConfig)

@@ -11,6 +11,8 @@ import (
 
 func (this *View) FriendsPage() {
 
+	this.OpenFriendViewFlag = true
+
 	layout := VBox{}
 	children := []Widget{}
 
@@ -71,4 +73,6 @@ func (this *View) FriendsPage() {
 	this.mw_FriendsPage.Layout = layout
 	this.mw_FriendsPage.Children = children
 	this.mw_FriendsPage.Run()
+
+	this.OpenFriendViewFlag = false
 }

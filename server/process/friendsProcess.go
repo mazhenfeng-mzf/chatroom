@@ -86,17 +86,37 @@ func (this *ClientProcess) receiveFriendsAddAccept() (causeId message.CauseId) {
 }
 
 func (this *ClientProcess) handle_FriendsAddAccept(acc_d *message.FriendsAddAcceptData) (causeId message.CauseId) {
-	msg := message.MessageDataW{
+
+	//转发 FriendsAddAccept 消息给目标
+	acc_msg := message.MessageDataW{
 		Type: message.FriendsAddAccept,
 		Data: acc_d,
 	}
-	if cliProc, yes := CliMgr.ClientIsOnline(acc_d.FromClientId); yes {
+
+	cliProc, yes := CliMgr.ClientIsOnline(acc_d.FromClientId)
+	if yes {
 		MyLOG.Log("系统消息目标用户id %s 在线", acc_d.FromClientId)
-		processpkg.WritePkg(cliProc.Conn, &msg)
+		processpkg.WritePkg(cliProc.Conn, &acc_msg)
 	} else {
 		MyLOG.Log("系统消息目标用户id %s 不在线", acc_d.FromClientId)
 		model.CrDB.FriendsBoxAdd(acc_d.FromClientId, acc_d.ToClientId, "", message.FriendsAddAccept)
 	}
+
+	notify_data := message.FriendsAddNotifyData{
+		FromClientId:   acc_d.FromClientId,
+		FromClientName: acc_d.FromClientName,
+		ToClientId:     acc_d.ToClientId,
+		ToClientName:   acc_d.ToClientName,
+		Online:         yes,
+	}
+
+	//回复 FriendsAddNotify 给用户
+	notify_msg := message.MessageDataW{
+		Type: message.FriendsAddNotify,
+		Data: notify_data,
+	}
+	processpkg.WritePkg(this.Conn, &notify_msg)
+
 	return
 }
 

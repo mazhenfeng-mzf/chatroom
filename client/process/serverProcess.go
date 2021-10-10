@@ -70,6 +70,8 @@ func (this *ServerProcess) Start(conn net.Conn) {
 			this.receive_FriendsAddAccept()
 		case message.FriendsAddReject:
 			this.receive_FriendsAddReject()
+		case message.FriendsAddNotify:
+			this.receive_FriendsAddNotify()
 
 		//smsHistory
 		case message.SmsHistoryResponse:
@@ -115,7 +117,7 @@ func (this *ServerProcess) WaitEnterPC() (err error) {
 
 	for i := 1; i <= 2000; i++ {
 		if ClientProc.HasEnterPC {
-			time.Sleep(10 * time.Millisecond) // give more time for walk.mw.Run()
+			time.Sleep(100 * time.Millisecond) // give more time for walk.mw.Run() (publicCRPage)
 			return
 		}
 		time.Sleep(1 * time.Millisecond)
@@ -177,7 +179,9 @@ func (this *ServerProcess) receiveFriendOnOffLine() (err error) {
 
 	CliMgr.FriendsClientsAdd(friendId, friendName, online)
 
-	MyView.UpdateFriendOnOffLine(friendId, friendName, online)
+	if MyView.OpenFriendViewFlag {
+		MyView.UpdateFriendOnOffLine(friendId, friendName, online)
+	}
 
 	return
 }

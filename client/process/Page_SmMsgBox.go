@@ -39,14 +39,14 @@ func (this *View) SmMsgBoxPage() {
 func (this *View) OpenSmMsgPage(SmIndex uint16) {
 
 	smMsg := MySmMsgBox.SmMap[SmIndex]
-	MyLOG.Log("打开系统消息详情: %#v", *smMsg)
+	//MyLOG.Log("打开系统消息详情: %#v", *smMsg)
 
-	MySmMsgBox.Delete(smMsg.Index)
+	//MySmMsgBox.Delete(smMsg.Index)
 	MySmMsgBox.Display_MainPage()
 
 	smMsg.AssignPushBtn.SetText(fmt.Sprintf("%s(%s)", smMsg.Title, "已读"))
 
-	MySmMsgBox.Delete(smMsg.Index)
+	//MySmMsgBox.Delete(smMsg.Index)
 
 	// MySmMsgBox.Refresh_SmMsgBoxPage()
 	//MyLOG.Log("smMsg.Data: %#v", smMsg.Data)

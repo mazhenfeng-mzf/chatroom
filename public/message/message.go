@@ -133,6 +133,14 @@ type FriendsAddAcceptData struct {
 	Online         bool
 }
 
+type FriendsAddNotifyData struct {
+	FromClientId   string // who trigger FriendsAddRequest
+	FromClientName string
+	ToClientId     string
+	ToClientName   string
+	Online         bool
+}
+
 type FriendsAddRejectData struct {
 	FromClientId   string // who trigger FriendsAddRequest
 	FromClientName string

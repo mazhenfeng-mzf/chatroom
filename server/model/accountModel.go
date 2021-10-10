@@ -3,8 +3,9 @@ package model
 import (
 	"chatroom/public/message"
 	. "chatroom/public/tools"
-	. "chatroom/server/config"
-	"database/sql"
+
+	//. "chatroom/server/config"
+	//"database/sql"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -15,20 +16,6 @@ type Count struct {
 	CountId   string `db:"client_id"`
 	CountName string `db:"count_name"`
 	CountPwd  string `db:"count_pwd"`
-}
-
-func (thiss *ChatroomDB) Init() (err error) {
-
-	db, err := sql.Open("mysql", MyConfig.DB_CONNECT_STRING)
-	if err != nil {
-		MyLOG.ErrLog("连接数据库失败")
-		return
-	}
-
-	db.SetMaxOpenConns(10)
-	db.SetMaxIdleConns(5)
-	thiss.DB = db
-	return
 }
 
 func (thiss *ChatroomDB) CountExist(client_id string) (yes bool, causeId message.CauseId) {

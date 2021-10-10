@@ -51,6 +51,23 @@ func (this *ServerProcess) receive_FriendsAddAccept() (err error) {
 	return
 }
 
+func (this *ServerProcess) receive_FriendsAddNotify() (err error) {
+
+	var data message.FriendsAddNotifyData
+	err = json.Unmarshal(this.Msg.Data, &data)
+	if err != nil {
+		MyLOG.ErrLog("FriendsAddNotify 信息解析失败")
+		err = errs.INVAILD_MSG_PARSE_FAIL
+		return
+	}
+
+	CliMgr.FriendsClientsAdd(data.FromClientId, data.FromClientName, data.Online)
+
+	MySmMsgBox.Add(message.FriendsAddAccept, data)
+	MySmMsgBox.Display_MainPage()
+	return
+}
+
 func (this *ServerProcess) receive_FriendsAddReject() (err error) {
 
 	var data message.FriendsAddRejectData

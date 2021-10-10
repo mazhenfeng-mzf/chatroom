@@ -21,7 +21,7 @@ type ClientProcess struct {
 }
 
 func Connect_DB() (err error) {
-	err = model.CrDB.Init()
+	err = model.CrDB.Connect()
 	if err != nil {
 		MyLOG.Log("连接 DB fail")
 		return
@@ -204,7 +204,7 @@ func (this *ClientProcess) loginProc() (causeId message.CauseId) {
 	exist, causeId := model.CrDB.CountExist(login_req_d.Id)
 	if !exist {
 		MyLOG.ErrLog("用户不存在")
-		this.write_login_rej(message.ID_COUNT_EXIST)
+		this.write_login_rej(message.ID_COUNT_NOT_EXIST)
 		return
 	}
 

@@ -24,6 +24,11 @@ type Config struct { //配置文件要通过tag来指定配置文件中的名称
 	DB_CONNECT_STRING string
 
 	LISTEN_PORT string `ini:"listen_port"`
+
+	// db_max_open_conns = 10
+	// db_max_idle_conns = 5
+	DB_MAX_OPEN_CONNS int `ini:"db_max_open_conns"`
+	DB_MAX_IDLE_CONNS int `ini:"db_max_idle_conns"`
 }
 
 var MyConfig *Config
