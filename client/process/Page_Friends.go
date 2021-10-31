@@ -47,7 +47,8 @@ func (this *View) FriendsPage() {
 					Text:     fmt.Sprintf("%s(%s)", ucd.Name, ucd.Id),
 					AssignTo: &friendView.CheckInfo_PushBtn,
 					OnClicked: func() {
-
+						//MyLOG.Log("点击好友 %s(%s)", ucd.Name, ucd.Id)
+						MyLOG.Log("点击好友 %s(%s)", clientName, clientId)
 					},
 				},
 				Label{
@@ -59,8 +60,17 @@ func (this *View) FriendsPage() {
 					Text:     "发送消息",
 					AssignTo: &friendView.CheckInfo_PushBtn,
 					OnClicked: func() {
-						enptySmsList := make([]*message.SmsP2PData, 0, 0)
-						MyView.OpenP2PChatRoom(clientId, clientName, enptySmsList)
+						//enptySmsList := make([]*message.SmsP2PData, 0, 0)
+
+						//smsList := MySmsBox.Get(clientId)
+
+						if MySmsBox.smsBox_isExist(clientId) {
+							MySmsBox.ClickSmsInbox(clientId, clientName)
+						} else {
+							enptySmsList := make([]*message.SmsP2PData, 0, 0)
+							MyView.OpenP2PChatRoom(clientId, clientName, enptySmsList)
+						}
+
 					},
 				},
 			},

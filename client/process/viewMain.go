@@ -323,6 +323,12 @@ func (this *View) SmsBox_forClient_Delete(fromClientId string) {
 	delete(this.SmsBoxMap, fromClientId)
 }
 
+func (this *View) SmsBox_forClient_isExist(fromClientId string) (yes bool) {
+
+	_, yes = this.SmsBoxMap[fromClientId]
+	return
+}
+
 func (this *View) OpenP2PChatRoom_SmsHistory(clientId string) {
 	p2pcr := this.P2PChatRoomList[clientId]
 	p2pcr.receive_SmsHistoryResponse_Flag = false

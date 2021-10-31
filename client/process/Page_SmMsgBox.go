@@ -18,12 +18,17 @@ func (this *View) SmMsgBoxPage() {
 
 		MyLOG.Log("展示系统消息: (index:%d) %#v", index, *smMsg)
 
+		myindex := index
+
 		pushBtn := PushButton{
 			Text:     fmt.Sprintf("%s(%s)", smMsg.Title, "未读"),
 			AssignTo: &smMsg.AssignPushBtn,
 			OnClicked: func() {
-				MyLOG.Log("点击查看系统消息: index(%d): %#v", index, *smMsg)
-				MyView.OpenSmMsgPage(index)
+				MyLOG.Log("代码错误展示：点击查看系统消息: index(%d)", index)
+				//MyView.OpenSmMsgPage(index)
+
+				MyLOG.Log("代码正确展示：点击查看系统消息: index(%d)", myindex)
+				MyView.OpenSmMsgPage(myindex)
 			},
 		}
 

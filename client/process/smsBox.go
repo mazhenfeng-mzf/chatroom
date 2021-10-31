@@ -65,11 +65,20 @@ func (this *SmsBox) Get(fromClientId string) (smsList []*message.SmsP2PData) {
 	return
 }
 
+func (this *SmsBox) smsBox_isExist(fromClientId string) (yes bool) {
+	_, yes = this.SmsMap[fromClientId]
+	return
+}
+
 func (this *SmsBox) Display_MainPage() {
 	MyView.MainPage_SmsBox.SetText(fmt.Sprintf("收件箱(%d)", this.SmsSum))
 }
 
 func (this *SmsBox) ClickSmsInbox(fromClientId string, fromClientName string) {
+
+	if !MyView.SmsBox_forClient_isExist(fromClientId) {
+		return
+	}
 
 	// clear MyView.SmsBoxMap
 	MyView.SmsBoxMap[fromClientId].PushBtnAssign.SetText(fmt.Sprintf("%s(%s)(%d)", fromClientName, fromClientId, 0)) //更新收件箱
