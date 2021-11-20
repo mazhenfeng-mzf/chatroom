@@ -8,6 +8,8 @@
 
 -------------------
 
+# 示范
+![chatroom](https://github.com/mazhenfeng-mzf/chatroom/blob/master/chatroom_01.mp4)
 
 
 # 使用说明
